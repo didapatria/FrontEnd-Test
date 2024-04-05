@@ -1,9 +1,13 @@
 'use client'
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { RootState, useAppDispatch, useAppSelector } from "@/redux/store";
 import { fetchDataList } from "@/redux/slices/dataListSlice";
 import { DataListItems, Playlist } from "@/redux/types";
+import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
+import PlayList from "@/components/PlayList";
+import Footer from "@/components/Footer";
 
 const Home = () => {
   const dispatch = useAppDispatch();
@@ -47,21 +51,34 @@ const Home = () => {
     <div>
       {dataList?.map((data: DataListItems | any) => (
         <div key={data.id}>
-          <h1>{data.title}</h1>
-          <p>{data.description}</p>
-          <img src={data.banner} alt="" />
-          <img src={data.logo} alt="" />
-          {data.playlist?.map((playlist: Playlist) => (
-            <div key={playlist.id}>
-              <h1>{playlist.title}</h1>
-              <p>{playlist.description}</p>
-              {playlist.type === "image"? (
-                <img src={playlist.url} alt="" />
-              ) :(
-                <video src={playlist.url} controls />
-              )}
-            </div>
-          ))}
+          {/* Navbar Section */}
+          <Navbar
+            logo={data.logo}
+            title={data.title}
+            playlist={data.playlist}
+          />
+          <main className="space-y-8 divide-y-4 divide-solid divide-slate-500">
+            {/* Hero Section */}
+            <Hero
+              description={data.description}
+              banner={data.banner}
+            />
+            {data.playlist?.map((playlist: Playlist) => (
+              <div key={playlist.id}>
+                {/* Playlist Section */}
+                <PlayList
+                  title={playlist.title}
+                  description={playlist.description}
+                  url={playlist.url}
+                  type={playlist.type}
+                />
+              </div>
+            ))}
+          </main> 
+          {/* Footer Section */}
+          <Footer
+            title={data.title}
+          />
         </div>
       ))}
     </div>

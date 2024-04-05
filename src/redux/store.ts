@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import dataListReducers from "@/redux/slices/dataListSlice";
+import UIReducers from "@/redux/slices/UISlice";
 
 export const store = configureStore({
   reducer: {
     dataListReducers,
+    UIReducers,
   },
 });
 

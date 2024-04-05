@@ -27,4 +27,8 @@ type Playlist = {
   type: "image" | "video";
 }
 
-export type { DataListState, DataList, DataListItems, Playlist }
+type UIState = {
+  show: boolean;
+}
+
+export type { DataListState, DataList, DataListItems, Playlist, UIState }
