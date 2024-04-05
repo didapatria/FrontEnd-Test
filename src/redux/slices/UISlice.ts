@@ -6,7 +6,7 @@ const initialState: UIState = {
 }
 
 const UISlice = createSlice({
-  name: 'dataList',
+  name: 'UI',
   initialState,
   reducers: {
     setShow: (state, action: PayloadAction<boolean>) => {

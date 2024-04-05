@@ -48,7 +48,7 @@ const Home = () => {
   }
 
   return (
-    <div>
+    <div className="overflow-x-hidden">
       {dataList?.map((data: DataListItems | any) => (
         <div key={data.id}>
           {/* Navbar Section */}
@@ -60,6 +60,7 @@ const Home = () => {
           <main className="space-y-8 divide-y-4 divide-solid divide-slate-500">
             {/* Hero Section */}
             <Hero
+              title={data.title}
               description={data.description}
               banner={data.banner}
             />

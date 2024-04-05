@@ -1,29 +1,24 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { DataList, DataListState } from "@/redux/types";
+import axios from "axios";
+import slugify from "slugify";
 
 export const fetchDataList = createAsyncThunk(
   'dataList/fetchDataList',
   async () => {
-    const proxyUrl = "https://cors-anywhere.herokuapp.com/";
     const apiUrl = "http://103.183.75.112/api/directory/dataList";
     try {
-        const response = await fetch(proxyUrl + apiUrl, {
+        const response = await axios(apiUrl, {
         method: "GET",
-        mode: "cors",
-        headers: {
-          "x-requested-with": "XMLHttpRequest",
-        },
-        cache: "no-store",
-        next: { revalidate: 3600 }
       });
-      if (!response.ok) {
+      if (response.status !== 200) {
         throw new Error(
           `HTTP error!
           status: ${response.status}
           message: ${response.statusText}`
         );
       }
-      const dataList: DataList = await response.json();
+      const dataList: DataList = await response.data;
       return dataList?.data;
     } catch (error: { name: string, message: string } | any) {
       if (error.name === 'AbortError') {
@@ -37,6 +32,11 @@ export const fetchDataList = createAsyncThunk(
     }
   }
 );
+
+export const generateSlug = (data: string): string => {
+  const slug = slugify(data, { replacement: '-', lower: true });
+  return slug;
+}
 
 const initialState: DataListState = {
   dataList: [],

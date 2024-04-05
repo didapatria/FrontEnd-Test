@@ -31,4 +31,14 @@ type UIState = {
   show: boolean;
 }
 
-export type { DataListState, DataList, DataListItems, Playlist, UIState }
+type DownloadState = {
+  url: string | null;
+}
+
+export type {
+  DataListState,
+  DataList,
+  DataListItems,
+  Playlist,
+  UIState,
+  DownloadState }
