@@ -40,11 +40,11 @@ const Home = () => {
   }, [dispatch]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-3xl font-bold text-gray-900 animate-ping">Loading...</div>;
   }
 
   if (error) {
-    return <div>{error}</div>;
+    return <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-3xl font-bold text-red-500">{error}</div>;
   }
 
   return (
