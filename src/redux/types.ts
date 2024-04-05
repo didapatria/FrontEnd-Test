@@ -1,11 +1,12 @@
 type DataListState = {
   dataList: DataList[];
   loading: boolean;
+  error: string;
 }
 
 type DataList = {
-  data: DataListItems[]
-  status?: number;
+  data: DataListItems[];
+  status: number;
 }
 
 type DataListItems = {
@@ -26,4 +27,4 @@ type Playlist = {
   type: "image" | "video";
 }
 
-export type { DataList, DataListItems, DataListState }
+export type { DataListState, DataList, DataListItems, Playlist }
